@@ -4,7 +4,7 @@ import React from 'react';
 import TodoList from "./todo/TodoList";
 import Context from './context';
 import AddTodo from './todo/AddTodo';
-import { func } from 'prop-types';
+
 
 
 
@@ -44,7 +44,7 @@ function App() {
       <div className="wrapper">
         <h1>Hello world ^^</h1>
 
-        {/* <AddTodo onCreate={addTodo} /> */}
+        <AddTodo onCreate={addTodo} />
 
         {todos.length ? <TodoList todos={todos} onToggle={toggleTodo} /> : <p>No todos :( </p>}
 

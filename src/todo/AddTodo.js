@@ -1,16 +1,17 @@
 
-import React, { useState } from "react"
-import PropTypes from 'prop-types'
+import React from "react"
 
-function AddTodo(onCreate) {
 
-	const { value, setValue } = useState('')
+function AddTodo({ onCreate }) {
+
+	const [value, setValue] = React.useState('')
 
 	function submitHandler(event) {
 		event.preventDefault()
 
 		if (value.trim()) {
 			onCreate(value)
+			setValue('')
 		}
 	}
 
