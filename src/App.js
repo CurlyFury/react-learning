@@ -10,15 +10,22 @@ import AddTodo from './todo/AddTodo';
 
 function App() {
 
-  const [todos, setTodos] = React.useState([
+  const [todoss, setTodos] = React.useState([
     { id: 1, completed: false, title: 'Buy few eggs' },
     { id: 2, completed: false, title: 'Buy some butter' },
     { id: 3, completed: false, title: 'Buy milk' },
   ])
 
+  React.useEffect(() => {
+    fetch('https://jsonplaceholder.typicode.com/todos/?_limit=5')
+      .then(response => response.json())
+      .then((todos) => {
+        setTodos(todoss.concat(todos))
+      })
+  }, [])
 
   function toggleTodo(id) {
-    setTodos(todos.map(todo => {
+    setTodos(todoss.map(todo => {
       if (todo.id === id) {
         todo.completed = !todo.completed
       }
@@ -28,11 +35,11 @@ function App() {
   }
 
   function removeTodo(id) {
-    setTodos(todos.filter(todo => todo.id !== id))
+    setTodos(todoss.filter(todo => todo.id !== id))
   }
 
   function addTodo(title) {
-    setTodos(todos.concat([{
+    setTodos(todoss.concat([{
       title: title,
       id: Date.now(),
       completed: false,
@@ -46,7 +53,7 @@ function App() {
 
         <AddTodo onCreate={addTodo} />
 
-        {todos.length ? <TodoList todos={todos} onToggle={toggleTodo} /> : <p>No todos :( </p>}
+        {todoss.length ? <TodoList todos={todoss} onToggle={toggleTodo} /> : <p>No todos :( </p>}
 
       </div>
     </Context.Provider>
