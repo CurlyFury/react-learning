@@ -5,7 +5,7 @@ import TodoList from "./todo/TodoList";
 import Context from './context';
 import AddTodo from './todo/AddTodo';
 import Loader from './Loader';
-
+import Modal from './Modal/Modal';
 
 
 
@@ -51,7 +51,7 @@ function App() {
     <Context.Provider value={{ removeTodo }}>
       <div className="wrapper">
         <h1>Hello world ^^</h1>
-
+        <Modal />
         <AddTodo onCreate={addTodo} />
 
         {loadind && <Loader />}
